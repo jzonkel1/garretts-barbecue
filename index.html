@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garrett's Barbecue | Smoked Texas BBQ — Southside Corpus Christi, TX</title>
+<meta name="description" content="Brisket, ribs, sausage and chicken smoked low and slow on the Southside of Corpus Christi. Plates, sandwiches, and family packages. 6062 Holly Rd #B4 — open Wed–Sat 11–7, Sun 11–4 or until sold out.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='10' fill='%23001153'/><text x='32' y='45' font-family='Arial Black,Arial' font-size='38' font-weight='900' fill='%23fff' text-anchor='middle'>G</text></svg>">
+
+<style>
+:root{
+  --navy:#001153;
+  --navy-deep:#00082E;
+  --navy-lift:#08205F;
+  --bone:#F5F0E5;
+  --bone-dim:#E4DCCB;
+  --ember:#E0561C;
+  --ember-soft:#F0894A;
+  --ash:#14141A;
+  --ink:#0B0B10;
+  --display:'Archivo Black', 'Arial Black', sans-serif;
+  --body:'Libre Franklin', system-ui, sans-serif;
+  --pad:clamp(1.25rem, 5vw, 4.5rem);
+  --max:1240px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--navy); color:var(--bone);
+  font-family:var(--body); font-size:clamp(1rem,.97rem + .2vw,1.075rem);
+  line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--display); font-weight:400; line-height:.95; letter-spacing:-.02em; margin:0; text-wrap:balance}
+p{margin:0}
+.wrap{width:100%; max-width:var(--max); margin-inline:auto; padding-inline:var(--pad)}
+
+/* ---------- shared bits ---------- */
+.eyebrow{
+  font-family:var(--body); font-weight:700; font-size:.72rem;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--ember-soft);
+  display:flex; align-items:center; gap:.85rem;
+}
+.eyebrow::before,.eyebrow::after{content:''; height:1px; width:clamp(18px,6vw,42px); background:currentColor; opacity:.55}
+.eyebrow::after{display:none}
+.btn{
+  --bg:var(--ember); --fg:#fff;
+  display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+  background:var(--bg); color:var(--fg); text-decoration:none;
+  font-family:var(--display); font-size:.94rem; letter-spacing:.01em;
+  padding:1.02rem 1.7rem; border:0; border-radius:3px; cursor:pointer;
+  transition:transform .18s cubic-bezier(.2,.8,.3,1), box-shadow .18s, background .18s;
+  box-shadow:0 6px 0 rgba(0,0,0,.28);
+}
+.btn:hover{transform:translateY(-3px); box-shadow:0 9px 0 rgba(0,0,0,.28)}
+.btn:active{transform:translateY(1px); box-shadow:0 3px 0 rgba(0,0,0,.28)}
+.btn--ghost{--bg:transparent; --fg:var(--bone); box-shadow:inset 0 0 0 2px rgba(245,240,229,.34)}
+.btn--ghost:hover{--bg:rgba(245,240,229,.09); box-shadow:inset 0 0 0 2px rgba(245,240,229,.6)}
+.btn--ink{--bg:var(--navy); --fg:var(--bone)}
+.reveal{opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.3,1)}
+.reveal.in{opacity:1; transform:none}
+
+/* grain + paper texture */
+.grain::after{
+  content:''; position:absolute; inset:0; pointer-events:none; opacity:.16; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- header ---------- */
+header{
+  position:sticky; top:0; z-index:60;
+  background:rgba(0,8,46,.86); backdrop-filter:blur(10px) saturate(1.3);
+  border-bottom:1px solid rgba(245,240,229,.12);
+  transition:background .3s;
+}
+.bar{display:flex; align-items:center; gap:1.5rem; height:clamp(62px,8vw,80px)}
+.bar__logo img{height:clamp(21px,3.1vw,28px); width:auto}
+nav.desk{display:none; margin-left:auto; gap:2rem}
+nav.desk a{
+  text-decoration:none; font-size:.79rem; font-weight:600; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--bone); opacity:.78; position:relative; padding-block:.4rem;
+}
+nav.desk a::after{content:''; position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--ember); transition:width .28s}
+nav.desk a:hover{opacity:1}
+nav.desk a:hover::after{width:100%}
+.bar__cta{margin-left:auto; display:none}
+.bar__cta .btn{padding:.72rem 1.25rem; font-size:.82rem; box-shadow:0 4px 0 rgba(0,0,0,.3)}
+@media(min-width:900px){
+  nav.desk{display:flex}
+  .bar__cta{margin-left:0; display:block}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative; isolation:isolate; overflow:hidden; min-height:clamp(560px,90svh,860px); display:grid; align-items:center}
+.hero__bg{position:absolute; inset:0; z-index:-2}
+.hero__bg img{
+  width:100%; height:100%; object-fit:cover; object-position:center 58%;
+  filter:saturate(1.18) contrast(1.06) brightness(1.04);
+}
+.hero__bg::after{
+  content:''; position:absolute; inset:0;
+  background:
+    linear-gradient(to top, var(--navy) 2%, rgba(0,17,83,.42) 34%, rgba(0,8,46,.22) 100%),
+    linear-gradient(102deg, rgba(0,8,46,.88) 0%, rgba(0,10,52,.6) 38%, rgba(0,17,83,.12) 68%, rgba(0,8,46,.34) 100%);
+}
+@media(max-width:899px){
+  .hero__bg::after{
+    background:
+      linear-gradient(to top, var(--navy) 3%, rgba(0,17,83,.58) 46%, rgba(0,8,46,.66) 100%);
+  }
+}
+.hero__inner{padding-block:clamp(4.5rem,13vw,7rem); text-align:center}
+.hero .eyebrow{justify-content:center}
+.hero .eyebrow::after{display:block}
+.hero h1{
+  font-size:clamp(2.9rem,11.5vw,6.6rem); margin:1.15rem 0 0; letter-spacing:-.035em;
+  text-shadow:0 4px 40px rgba(0,8,46,.6);
+}
+.hero h1 em{font-style:normal; color:var(--ember-soft); display:block}
+.hero__sub{
+  max-width:34rem; margin:1.5rem auto 0; font-size:clamp(1.02rem,.98rem + .4vw,1.22rem);
+  color:rgba(245,240,229,.86); font-weight:300;
+}
+.hero__acts{display:flex; flex-wrap:wrap; gap:.85rem; justify-content:center; margin-top:2.1rem}
+@media(max-width:599px){
+  .hero__acts{flex-direction:column; align-items:stretch; max-width:19rem; margin-inline:auto}
+  .hero__acts .btn{width:100%}
+}
+.hero__hours{
+  display:inline-flex; align-items:center; gap:.7rem; margin-top:2.4rem;
+  background:rgba(0,8,46,.55); border:1px solid rgba(245,240,229,.2);
+  padding:.62rem 1.15rem; border-radius:100px; font-size:.83rem; letter-spacing:.03em;
+}
+.dot{width:8px; height:8px; border-radius:50%; background:#4ADE80; box-shadow:0 0 0 4px rgba(74,222,128,.2); flex:none}
+@media(min-width:900px){
+  .hero__inner{text-align:left; max-width:none}
+  .hero .eyebrow{justify-content:flex-start}
+  .hero .eyebrow::after{display:none}
+  .hero__sub{margin-inline:0}
+  .hero__acts{justify-content:flex-start}
+  .hero h1{max-width:12ch}
+}
+/* staggered load */
+.hero__inner>*{animation:rise .9s cubic-bezier(.2,.8,.3,1) both}
+.hero__inner>*:nth-child(1){animation-delay:.1s}
+.hero__inner>*:nth-child(2){animation-delay:.22s}
+.hero__inner>*:nth-child(3){animation-delay:.34s}
+.hero__inner>*:nth-child(4){animation-delay:.46s}
+.hero__inner>*:nth-child(5){animation-delay:.58s}
+@keyframes rise{from{opacity:0; transform:translateY(30px)} to{opacity:1; transform:none}}
+
+/* ---------- trust strip ---------- */
+.trust{background:var(--navy-deep); border-block:1px solid rgba(245,240,229,.1)}
+.trust__grid{display:grid; gap:.5rem 2rem; grid-template-columns:1fr; padding-block:1.6rem; text-align:center}
+.trust__item{display:flex; flex-direction:column; align-items:center; gap:.25rem; padding-block:.7rem}
+.trust__item strong{font-family:var(--display); font-size:1.32rem; letter-spacing:-.01em}
+.trust__item span{font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; opacity:.62}
+.stars{color:#F5B62A; letter-spacing:.1em; font-size:1.05rem}
+@media(min-width:760px){
+  .trust__grid{grid-template-columns:repeat(4,1fr); text-align:center}
+  .trust__item+.trust__item{border-left:1px solid rgba(245,240,229,.13)}
+}
+
+/* ---------- section frame ---------- */
+section{position:relative}
+.sec{padding-block:clamp(4.5rem,10vw,8rem)}
+.sec__head{text-align:center; max-width:46rem; margin-inline:auto; margin-bottom:clamp(2.75rem,6vw,4rem)}
+.sec__head .eyebrow{justify-content:center}
+.sec__head .eyebrow::after{display:block}
+.sec__head h2{font-size:clamp(2.1rem,6.6vw,3.9rem); margin-top:1rem}
+.sec__head p{margin-top:1.1rem; opacity:.78; font-weight:300; font-size:1.06rem}
+
+/* ---------- pitch / 24hr ---------- */
+.pitch{background:var(--navy-deep); overflow:hidden}
+.pitch__grid{display:grid; gap:clamp(2.5rem,6vw,4.5rem); align-items:center}
+.pitch__media{position:relative; border-radius:4px; overflow:hidden; box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.pitch__media img{width:100%; aspect-ratio:4/3; object-fit:cover}
+.pitch__badge{
+  position:absolute; left:0; bottom:0; background:var(--ember); color:#fff;
+  padding:1rem 1.4rem 1.1rem; text-align:left;
+}
+.pitch__badge b{display:block; font-family:var(--display); font-size:2.6rem; line-height:.85}
+.pitch__badge span{font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; opacity:.9}
+.pitch h2{font-size:clamp(2rem,6vw,3.4rem); margin-top:1rem}
+.pitch__body{margin-top:1.4rem; opacity:.82; font-weight:300}
+.pitch__list{list-style:none; padding:0; margin:2.1rem 0 0; display:grid; gap:1.35rem}
+.pitch__list li{display:flex; gap:1rem; align-items:flex-start}
+.pitch__list svg{flex:none; margin-top:.28rem; color:var(--ember-soft)}
+.pitch__list b{font-family:var(--display); font-weight:400; font-size:1.02rem; display:block; margin-bottom:.15rem}
+.pitch__list p{font-size:.94rem; opacity:.75; font-weight:300}
+@media(min-width:900px){.pitch__grid{grid-template-columns:1fr 1fr}}
+
+/* ---------- menu (butcher paper) ---------- */
+.menu{background:var(--bone); color:var(--ink)}
+.menu .eyebrow{color:var(--ember)}
+.menu .sec__head p{opacity:.72}
+.menu__note{
+  text-align:center; font-size:.82rem; opacity:.6; font-style:italic; margin-top:1.2rem;
+}
+.menu__grid{display:grid; gap:clamp(2rem,4vw,3rem); grid-template-columns:1fr}
+@media(min-width:820px){.menu__grid{grid-template-columns:1fr 1fr}}
+.card{
+  background:#fff; border:1px solid rgba(11,11,16,.13); border-radius:3px;
+  padding:clamp(1.6rem,3.4vw,2.3rem); position:relative;
+  box-shadow:0 2px 0 rgba(11,11,16,.06);
+  display:flex; flex-direction:column;
+}
+.card--wide{grid-column:1/-1}
+.card__title{
+  display:flex; align-items:baseline; flex-wrap:wrap; gap:.25rem .8rem; margin-bottom:1.5rem;
+  padding-bottom:.9rem; border-bottom:2px solid var(--navy);
+}
+.card__title h3{font-size:1.32rem; color:var(--navy)}
+.card__title small{
+  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; opacity:.5;
+  margin-left:auto; font-weight:600; white-space:nowrap;
+}
+@media(max-width:479px){
+  .card__title h3{width:100%}
+  .card__title small{margin-left:0; white-space:normal}
+}
+.rows{list-style:none; margin:0; padding:0; display:grid; gap:.95rem}
+.row{display:flex; align-items:baseline; gap:.6rem}
+.row__name{font-weight:600; font-size:1rem}
+.row__name em{font-style:normal; font-weight:400; opacity:.55; font-size:.87rem; display:block; margin-top:.1rem}
+.row__lead{flex:1; border-bottom:1.5px dotted rgba(11,11,16,.28); transform:translateY(-4px); min-width:1.5rem}
+.row__price{font-family:var(--display); font-size:1.02rem; color:var(--navy); white-space:nowrap}
+.sides{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.7rem 1.4rem; margin-top:.3rem}
+.sides li{display:flex; align-items:center; gap:.6rem; font-weight:600; font-size:.98rem}
+.sides li::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--ember); flex:none}
+.pricepair{
+  display:flex; flex-wrap:wrap; gap:.5rem 1.6rem;
+  margin-top:auto; padding-top:1.3rem; border-top:1px solid rgba(11,11,16,.12);
+  font-size:.9rem;
+}
+.pricepair b{font-family:var(--display); color:var(--navy); font-weight:400}
+.special{
+  background:var(--navy); color:var(--bone); border-color:var(--navy);
+}
+.special .card__title{border-bottom-color:var(--ember)}
+.special .card__title h3{color:var(--bone)}
+.special .row__price{color:var(--ember-soft)}
+.special .row__lead{border-bottom-color:rgba(245,240,229,.3)}
+
+/* ---------- packages ---------- */
+.packs{background:var(--navy); position:relative; overflow:hidden}
+.packs__grid{display:grid; gap:1.25rem; grid-template-columns:1fr}
+@media(min-width:680px){.packs__grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1080px){.packs__grid{grid-template-columns:repeat(4,1fr)}}
+.pack{
+  background:var(--navy-lift); border:1px solid rgba(245,240,229,.15); border-radius:3px;
+  padding:1.9rem 1.6rem; display:flex; flex-direction:column; position:relative; overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.8,.3,1), border-color .3s, background .3s;
+}
+.pack:hover{transform:translateY(-7px); border-color:var(--ember); background:#0A2570}
+.pack__num{
+  font-family:var(--display); font-size:.74rem; letter-spacing:.18em; color:var(--ember-soft);
+  text-transform:uppercase; margin-bottom:.65rem;
+}
+.pack h3{font-size:1.62rem; margin-bottom:1.1rem}
+.pack ul{list-style:none; margin:0 0 1.7rem; padding:0; display:grid; gap:.55rem; font-size:.92rem; opacity:.8; font-weight:300}
+.pack ul li{display:flex; gap:.6rem}
+.pack ul li::before{content:'—'; color:var(--ember); opacity:.7; flex:none}
+.pack__price{
+  margin-top:auto; padding-top:1.2rem; border-top:1px solid rgba(245,240,229,.18);
+  font-family:var(--display); font-size:1.85rem; color:var(--bone);
+}
+
+/* ---------- story ---------- */
+.story{background:var(--bone); color:var(--ink)}
+.story .eyebrow{color:var(--ember)}
+.story__grid{display:grid; gap:clamp(2rem,5vw,3.5rem); grid-template-columns:1fr}
+@media(min-width:900px){.story__grid{grid-template-columns:1.05fr .95fr; align-items:center}}
+.story h2{font-size:clamp(2rem,6vw,3.4rem); color:var(--navy); margin-top:1rem}
+.story__lede{margin-top:1.4rem; font-size:1.1rem; font-weight:300; opacity:.85}
+.story__cols{display:grid; gap:1.6rem; margin-top:2.4rem}
+.story__cols h4{font-size:1.02rem; color:var(--navy); margin-bottom:.4rem}
+.story__cols p{font-size:.95rem; opacity:.75; font-weight:300}
+.story__img{border-radius:3px; overflow:hidden; box-shadow:0 26px 60px rgba(0,17,83,.28)}
+.story__img img{width:100%; aspect-ratio:5/6; object-fit:cover}
+@media(max-width:899px){.story__img img{aspect-ratio:4/3}}
+
+/* ---------- gallery ---------- */
+.gal{background:var(--navy-deep)}
+.gal__grid{columns:2; column-gap:.85rem}
+@media(min-width:760px){.gal__grid{columns:3; column-gap:1rem}}
+.gal__grid figure{
+  margin:0 0 .85rem; break-inside:avoid; border-radius:3px; overflow:hidden;
+  cursor:pointer; position:relative; background:var(--navy-lift);
+}
+@media(min-width:760px){.gal__grid figure{margin-bottom:1rem}}
+.gal__grid img{width:100%; transition:transform .7s cubic-bezier(.2,.8,.3,1), filter .4s}
+.gal__grid figure::after{
+  content:''; position:absolute; inset:0; background:var(--navy); opacity:0; transition:opacity .4s;
+}
+.gal__grid figure:hover img{transform:scale(1.07)}
+.gal__grid figure:hover::after{opacity:.22}
+
+/* lightbox */
+.lb{
+  position:fixed; inset:0; z-index:200; background:rgba(0,8,46,.96);
+  display:grid; place-items:center; padding:1.5rem; opacity:0; pointer-events:none; transition:opacity .3s;
+  backdrop-filter:blur(6px);
+}
+.lb.on{opacity:1; pointer-events:auto}
+.lb img{max-width:min(1100px,92vw); max-height:86svh; width:auto; border-radius:3px; box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb__x{
+  position:absolute; top:1.1rem; right:1.1rem; width:46px; height:46px; border-radius:50%;
+  background:rgba(245,240,229,.12); border:1px solid rgba(245,240,229,.28); color:var(--bone);
+  font-size:1.4rem; cursor:pointer; display:grid; place-items:center; line-height:1;
+}
+.lb__x:hover{background:var(--ember); border-color:var(--ember)}
+.lb__nav{
+  position:absolute; top:50%; transform:translateY(-50%); width:52px; height:52px; border-radius:50%;
+  background:rgba(245,240,229,.1); border:1px solid rgba(245,240,229,.25); color:var(--bone);
+  font-size:1.5rem; cursor:pointer; display:grid; place-items:center; line-height:1;
+}
+.lb__nav:hover{background:var(--ember); border-color:var(--ember)}
+.lb__nav.prev{left:1rem} .lb__nav.next{right:1rem}
+
+/* ---------- reviews ---------- */
+.revs{background:var(--navy)}
+.revs__grid{display:grid; gap:1.25rem; grid-template-columns:1fr}
+@media(min-width:800px){.revs__grid{grid-template-columns:repeat(3,1fr)}}
+.rev{
+  background:var(--navy-lift); border:1px solid rgba(245,240,229,.14); border-radius:3px;
+  padding:1.9rem 1.7rem; display:flex; flex-direction:column;
+}
+.rev .stars{margin-bottom:1rem; font-size:.95rem}
+.rev p{font-size:.98rem; font-weight:300; opacity:.88; font-style:italic}
+.rev__who{
+  margin-top:1.5rem; padding-top:1.1rem; border-top:1px solid rgba(245,240,229,.14);
+  display:flex; align-items:center; gap:.75rem;
+}
+.rev__av{
+  width:38px; height:38px; border-radius:50%; background:var(--ember); color:#fff; flex:none;
+  display:grid; place-items:center; font-family:var(--display); font-size:.92rem;
+}
+.rev__who b{display:block; font-size:.9rem; font-weight:600}
+.rev__who span{font-size:.75rem; opacity:.55}
+.revs__cta{text-align:center; margin-top:2.6rem}
+
+/* ---------- visit ---------- */
+.visit{background:var(--navy-deep)}
+.visit__grid{display:grid; gap:clamp(2rem,5vw,3rem); grid-template-columns:1fr}
+@media(min-width:900px){.visit__grid{grid-template-columns:.85fr 1.15fr; align-items:start}}
+.info{display:grid; gap:1.9rem}
+.info__blk h4{font-size:.74rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ember-soft); margin-bottom:.6rem; font-family:var(--body); font-weight:700}
+.info__blk p, .info__blk a{font-size:1.06rem; text-decoration:none; font-weight:300; opacity:.9}
+.info__blk a:hover{color:var(--ember-soft); opacity:1}
+.hours{list-style:none; margin:0; padding:0; display:grid; gap:.5rem; font-weight:300}
+.hours li{display:flex; justify-content:space-between; gap:1rem; font-size:.98rem; opacity:.88; border-bottom:1px dotted rgba(245,240,229,.18); padding-bottom:.5rem}
+.hours li.closed{opacity:.45}
+.hours b{font-weight:600}
+.map{border-radius:3px; overflow:hidden; border:1px solid rgba(245,240,229,.16); min-height:340px; box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.map iframe{width:100%; height:100%; min-height:340px; border:0; display:block; filter:grayscale(.35) contrast(1.05)}
+.deliv{display:flex; flex-wrap:wrap; gap:.7rem; margin-top:.4rem}
+.deliv a{
+  display:inline-flex; align-items:center; gap:.5rem; text-decoration:none; font-size:.85rem; font-weight:600;
+  border:1px solid rgba(245,240,229,.28); padding:.6rem 1.1rem; border-radius:100px; transition:.25s;
+}
+.deliv a:hover{background:var(--ember); border-color:var(--ember); color:#fff}
+
+/* ---------- hiring ---------- */
+.hire{background:var(--ember); color:#fff; overflow:hidden; position:relative}
+.hire__in{display:grid; gap:1.6rem; align-items:center; padding-block:clamp(3rem,7vw,4.5rem)}
+@media(min-width:820px){.hire__in{grid-template-columns:1fr auto}}
+.hire h2{font-size:clamp(1.7rem,4.6vw,2.6rem)}
+.hire p{margin-top:.7rem; opacity:.92; font-weight:300; max-width:44ch}
+.hire .btn{--bg:var(--navy); --fg:#fff}
+
+/* ---------- footer ---------- */
+footer{background:var(--navy-deep); border-top:1px solid rgba(245,240,229,.12); padding-block:clamp(3rem,7vw,4.5rem) 6.5rem}
+@media(min-width:900px){footer{padding-bottom:clamp(3rem,7vw,4.5rem)}}
+.foot{display:grid; gap:2.4rem}
+@media(min-width:820px){.foot{grid-template-columns:1.4fr 1fr 1fr}}
+.foot img{height:26px; width:auto; margin-bottom:1.1rem}
+.foot p{font-size:.92rem; opacity:.6; font-weight:300; max-width:34ch}
+.foot h5{font-family:var(--body); font-size:.74rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ember-soft); margin:0 0 1rem; font-weight:700}
+.foot ul{list-style:none; margin:0; padding:0; display:grid; gap:.65rem}
+.foot ul a{text-decoration:none; font-size:.93rem; opacity:.72; font-weight:300}
+.foot ul a:hover{opacity:1; color:var(--ember-soft)}
+.foot__base{
+  margin-top:3rem; padding-top:1.6rem; border-top:1px solid rgba(245,240,229,.12);
+  display:flex; flex-wrap:wrap; gap:.8rem 2rem; justify-content:space-between; font-size:.8rem; opacity:.5;
+}
+.social{display:flex; gap:.7rem; margin-top:1.4rem}
+.social a{
+  width:40px; height:40px; border-radius:50%; border:1px solid rgba(245,240,229,.24);
+  display:grid; place-items:center; transition:.25s;
+}
+.social a:hover{background:var(--ember); border-color:var(--ember)}
+
+/* ---------- sticky mobile bar ---------- */
+.mbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:80; display:grid; grid-template-columns:1fr 1fr;
+  background:var(--navy-deep); border-top:1px solid rgba(245,240,229,.16);
+  padding:.55rem; gap:.5rem; box-shadow:0 -8px 30px rgba(0,0,0,.4);
+}
+.mbar a{
+  display:flex; align-items:center; justify-content:center; gap:.5rem; text-decoration:none;
+  font-family:var(--display); font-size:.86rem; padding:.9rem .5rem; border-radius:3px;
+}
+.mbar a:first-child{background:var(--ember); color:#fff}
+.mbar a:last-child{border:1px solid rgba(245,240,229,.3); color:var(--bone)}
+@media(min-width:900px){.mbar{display:none}}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important; transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1; transform:none}
+}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap bar">
+    <a class="bar__logo" href="#top" aria-label="Garrett's Barbecue home">
+      <img src="assets/logo-white.png" alt="Garrett's Barbecue">
+    </a>
+    <nav class="desk">
+      <a href="#menu">Menu</a>
+      <a href="#packages">Packages</a>
+      <a href="#story">Our Story</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="bar__cta"><a class="btn" href="tel:+13615005675">Call 361-500-5675</a></div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero grain">
+  <div class="hero__bg">
+    <img src="assets/hero-brisket.webp" alt="Slices of smoked brisket with a deep smoke ring and black pepper bark" fetchpriority="high">
+  </div>
+  <div class="wrap hero__inner">
+    <div class="eyebrow">Southside · Corpus Christi, Texas</div>
+    <h1>Twenty-Four Hours <em>In The Smoke</em></h1>
+    <p class="hero__sub">Brisket, pork ribs, sausage and chicken — cooked low and slow, and by slow we mean it. Served on Holly Road until it's gone.</p>
+    <div class="hero__acts">
+      <a class="btn" href="tel:+13615005675">Call To Order</a>
+      <a class="btn btn--ghost" href="#menu">See The Menu</a>
+    </div>
+    <div class="hero__hours"><span class="dot"></span> Wed–Sat 11–7 · Sun 11–4, or until sold out</div>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<div class="trust">
+  <div class="wrap trust__grid">
+    <div class="trust__item">
+      <div class="stars">★★★★★</div>
+      <strong>4.5 out of 5</strong>
+      <span>372 Google Reviews</span>
+    </div>
+    <div class="trust__item">
+      <strong>24 Hours</strong>
+      <span>Brisket, Start To Serving</span>
+    </div>
+    <div class="trust__item">
+      <strong>Dine In · Take Out</strong>
+      <span>Delivery Available</span>
+    </div>
+    <div class="trust__item">
+      <strong>6062 Holly Rd</strong>
+      <span>Suite B4 · Southside</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PITCH / 24 HOURS ================= -->
+<section class="sec pitch grain">
+  <div class="wrap pitch__grid">
+    <div class="pitch__media reveal">
+      <img src="assets/smoke-ring.webp" alt="A whole smoked brisket cut in half showing the smoke ring and rendered fat" loading="lazy">
+      <div class="pitch__badge"><b>24</b><span>Hours In The Pit</span></div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">Our Standard</div>
+      <h2>We Refuse To Compromise On Quality.</h2>
+      <p class="pitch__body">Our BBQ is cooked low and slow — and by slow, we mean it. Our briskets from start to serving take about 24 hours. No matter what, you can be sure you're eating the best BBQ that's made with care, love, and patience.</p>
+      <ul class="pitch__list">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2s3 3 3 6a3 3 0 0 1-6 0c0-3 3-6 3-6Z"/><path d="M5 14a7 7 0 0 0 14 0c0-2-1-3-1-3s-2 3-4 3-2-4-2-4-7 1-7 4Z"/></svg>
+          <div><b>Low and slow, all night</b><p>Briskets go on the pit the day before they hit your plate.</p></div>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h18M6 7v13h12V7M9 7V4h6v3"/></svg>
+          <div><b>Packed to travel well</b><p>We package our meals so the quality makes it all the way home with you.</p></div>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10a7 7 0 0 1 14 0c0 5.4-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+          <div><b>One pit, one location</b><p>Everything is smoked right here at 6062 Holly Road on the Southside.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MENU ================= -->
+<section class="sec menu" id="menu">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div class="eyebrow">The Board</div>
+      <h2>Smoked Texas Barbecue</h2>
+      <p>Brisket, pork ribs, sausage and chicken. Plates come with two sides — sandwich combos come with a side and a drink.</p>
+    </div>
+
+    <div class="menu__grid">
+
+      <div class="card reveal">
+        <div class="card__title"><h3>Plates</h3><small>Choice of 2 sides</small></div>
+        <ul class="rows">
+          <li class="row"><span class="row__name">1 Meat</span><i class="row__lead"></i><span class="row__price">$16.99</span></li>
+          <li class="row"><span class="row__name">2 Meats</span><i class="row__lead"></i><span class="row__price">$20.99</span></li>
+          <li class="row"><span class="row__name">3 Meats</span><i class="row__lead"></i><span class="row__price">$24.99</span></li>
+        </ul>
+        <div class="pricepair">
+          <span>Sides — Small <b>$2.99</b></span>
+          <span>Large <b>$7.99</b></span>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__title"><h3>By The Pound</h3><small>Meat only</small></div>
+        <ul class="rows">
+          <li class="row"><span class="row__name">Brisket <em>½ lb</em></span><i class="row__lead"></i><span class="row__price">$14.99</span></li>
+          <li class="row"><span class="row__name">Pork Ribs <em>½ lb</em></span><i class="row__lead"></i><span class="row__price">$11.99</span></li>
+          <li class="row"><span class="row__name">Sausage <em>1 link</em></span><i class="row__lead"></i><span class="row__price">$3.99</span></li>
+          <li class="row"><span class="row__name">Chicken Leg Quarter</span><i class="row__lead"></i><span class="row__price">$3.99</span></li>
+        </ul>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__title"><h3>Sandwiches</h3><small>Meat &amp; bun</small></div>
+        <ul class="rows">
+          <li class="row"><span class="row__name">Brisket</span><i class="row__lead"></i><span class="row__price">$9.99</span></li>
+          <li class="row"><span class="row__name">Sausage</span><i class="row__lead"></i><span class="row__price">$7.99</span></li>
+          <li class="row"><span class="row__name">Chopped Chicken</span><i class="row__lead"></i><span class="row__price">$5.99</span></li>
+        </ul>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__title"><h3>Sandwich Combos</h3><small>Side + drink</small></div>
+        <ul class="rows">
+          <li class="row"><span class="row__name">Brisket Combo</span><i class="row__lead"></i><span class="row__price">$12.99</span></li>
+          <li class="row"><span class="row__name">Sausage Combo</span><i class="row__lead"></i><span class="row__price">$10.99</span></li>
+          <li class="row"><span class="row__name">Chopped Chicken Combo</span><i class="row__lead"></i><span class="row__price">$10.99</span></li>
+        </ul>
+      </div>
+
+      <div class="card reveal">
+        <div class="card__title"><h3>Sides</h3><small>Small $2.99 · Large $7.99</small></div>
+        <ul class="rows sides">
+          <li>Smoked Beans</li>
+          <li>Potato Salad</li>
+          <li>Rice</li>
+          <li>Coleslaw</li>
+        </ul>
+        <div class="pricepair">
+          <span>Bottled Drink <b>$2.99</b></span>
+          <span>Water <b>$1.50</b></span>
+          <span>Chips <b>$1.75</b></span>
+        </div>
+      </div>
+
+      <div class="card special reveal">
+        <div class="card__title"><h3>Saturday Special</h3><small>While it lasts</small></div>
+        <ul class="rows">
+          <li class="row"><span class="row__name">Jalapeño Cheddar Sausage</span><i class="row__lead"></i><span class="row__price">$3.99</span></li>
+        </ul>
+        <p style="margin-top:1.3rem; font-size:.94rem; opacity:.75; font-weight:300">Saturdays only. Get here early — when it's gone, it's gone.</p>
+      </div>
+
+    </div>
+    <p class="menu__note">Larger portions available on select sandwiches and combos — prices as posted in store.</p>
+  </div>
+</section>
+
+<!-- ================= PACKAGES ================= -->
+<section class="sec packs grain" id="packages">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div class="eyebrow">Feed The Whole Crew</div>
+      <h2>Family &amp; Party Packages</h2>
+      <p>Four sizes, from a small get-together to a whole brisket for the block. Call ahead so we can have it ready for you.</p>
+    </div>
+    <div class="packs__grid">
+      <article class="pack reveal">
+        <div class="pack__num">Package #1</div>
+        <h3>The Smokey</h3>
+        <ul>
+          <li>1 lb brisket</li>
+          <li>2 sausage links</li>
+          <li>2 small sides</li>
+        </ul>
+        <div class="pack__price">$39.99</div>
+      </article>
+      <article class="pack reveal">
+        <div class="pack__num">Package #2</div>
+        <h3>The Craig</h3>
+        <ul>
+          <li>2 lb brisket</li>
+          <li>1 lb ribs</li>
+          <li>3 sausage links</li>
+          <li>2 large sides</li>
+        </ul>
+        <div class="pack__price">$95.99</div>
+      </article>
+      <article class="pack reveal">
+        <div class="pack__num">Package #3</div>
+        <h3>The Deebo</h3>
+        <ul>
+          <li>4 lb brisket</li>
+          <li>1 rack of ribs</li>
+          <li>6 sausage links</li>
+          <li>4 large sides</li>
+        </ul>
+        <div class="pack__price">$189.99</div>
+      </article>
+      <article class="pack reveal">
+        <div class="pack__num">Package #4</div>
+        <h3>Mr. Jones</h3>
+        <ul>
+          <li>Whole brisket</li>
+          <li>2 racks of ribs</li>
+          <li>12 sausage links</li>
+          <li>6 large sides</li>
+        </ul>
+        <div class="pack__price">$349.99</div>
+      </article>
+    </div>
+    <div style="text-align:center; margin-top:2.8rem" class="reveal">
+      <a class="btn" href="tel:+13615005675">Call To Reserve A Package</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="sec story" id="story">
+  <div class="wrap story__grid">
+    <div class="reveal">
+      <div class="eyebrow">Our Story</div>
+      <h2>It Started With A Rinky Dink Offset Smoker.</h2>
+      <p class="story__lede">And we burnt the first two briskets. Much has changed since then.</p>
+      <div class="story__cols">
+        <div>
+          <h4>Three years on Ayers</h4>
+          <p>We ran Garrett's at our first location for three years on Ayers St. Then we took a four year break.</p>
+        </div>
+        <div>
+          <h4>A year on Staples</h4>
+          <p>We started back up at 322 N Staples St. for a year — and the line came right back with us.</p>
+        </div>
+        <div>
+          <h4>Now on Holly Road</h4>
+          <p>Today we're at 6062 Holly Rd #B4 on the Southside, bringing you barbecue once again.</p>
+        </div>
+      </div>
+    </div>
+    <div class="story__img reveal">
+      <img src="assets/pit-trays.webp" alt="Trays of sliced brisket, smoked sausage links and pork ribs lined up and ready to serve" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="sec gal" id="gallery">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div class="eyebrow">Straight Off The Pit</div>
+      <h2>The Photo Gallery</h2>
+      <p>Every plate below came out of our kitchen on Holly Road.</p>
+    </div>
+    <div class="gal__grid reveal" id="galGrid">
+      <figure><img src="assets/plate-paper.webp" alt="Brisket, sausage, beans, potato salad, corn and pickles on butcher paper" loading="lazy"></figure>
+      <figure><img src="assets/ribs-grate.webp" alt="Racks of glazed pork ribs on the smoker grate" loading="lazy"></figure>
+      <figure><img src="assets/sandwich-stack.webp" alt="Brisket and sausage piled high on a toasted bun" loading="lazy"></figure>
+      <figure><img src="assets/brisket-sausage-pan.webp" alt="Sliced peppery brisket next to smoked sausage in a serving pan" loading="lazy"></figure>
+      <figure><img src="assets/plate-full.webp" alt="Brisket and sausage plate with smoked beans, potato salad, pickles and onions" loading="lazy"></figure>
+      <figure><img src="assets/combo-tray.webp" alt="Brisket and sausage sandwich combo with beans, pickles and barbecue sauce" loading="lazy"></figure>
+      <figure><img src="assets/ribs-foil.webp" alt="Close up of smoked pork ribs resting in foil" loading="lazy"></figure>
+      <figure><img src="assets/two-plates.webp" alt="Two brisket and sausage plates packed to go with white bread and sides" loading="lazy"></figure>
+      <figure><img src="assets/sandwich-beans.webp" alt="Brisket and sausage sandwich with a side of smoked beans" loading="lazy"></figure>
+      <figure><img src="assets/smoke-ring.webp" alt="Whole brisket cut in half revealing the smoke ring" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="sec revs">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div class="eyebrow">4.5 Stars · 372 Google Reviews</div>
+      <h2>What Corpus Is Saying</h2>
+    </div>
+    <div class="revs__grid">
+      <article class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Sausage was some of the best I've ever had and the brisket was great also! The staff were friendly and generous and gave us some sides on the house since we couldn't dine in. This is an awesome hole in the wall kind of place with good ambiance and great food!"</p>
+        <div class="rev__who"><div class="rev__av">JF</div><div><b>Joe Field</b><span>Local Guide · Google</span></div></div>
+      </article>
+      <article class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Picked up 3 meat platters with brisket, ribs and sausage and it was the best BBQ I've had in Corpus in 18 years. Their potato salad taste like mamas good ol potato salad. Highly recommend trying this place."</p>
+        <div class="rev__who"><div class="rev__av">RE</div><div><b>Rick Erwin</b><span>Google Review</span></div></div>
+      </article>
+      <article class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>"The ribs didn't just fall off the bone — they practically jumped off and straight into my mouth like they knew where they belonged. Every bite melted like butter, smoky and saucy in all the right ways."</p>
+        <div class="rev__who"><div class="rev__av">SS</div><div><b>Sabastian Salinas</b><span>Google Review</span></div></div>
+      </article>
+    </div>
+    <div class="revs__cta reveal">
+      <a class="btn btn--ghost" href="https://www.google.com/maps?q=Garrett%27s+Barbecue,+6062+Holly+Rd,+Corpus+Christi,+TX+78412" target="_blank" rel="noopener">Read All 372 Reviews</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISIT ================= -->
+<section class="sec visit" id="visit">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div class="eyebrow">Come Eat</div>
+      <h2>Find Us On Holly Road</h2>
+    </div>
+    <div class="visit__grid">
+      <div class="info reveal">
+        <div class="info__blk">
+          <h4>Address</h4>
+          <a href="https://www.google.com/maps?q=Garrett%27s+Barbecue,+6062+Holly+Rd,+Corpus+Christi,+TX+78412" target="_blank" rel="noopener">6062 Holly Rd #B4<br>Corpus Christi, TX 78412</a>
+        </div>
+        <div class="info__blk">
+          <h4>Call Or Text</h4>
+          <a href="tel:+13615005675">(361) 500-5675</a>
+        </div>
+        <div class="info__blk">
+          <h4>Hours</h4>
+          <ul class="hours">
+            <li><b>Wed – Sat</b><span>11:00 AM – 7:00 PM</span></li>
+            <li><b>Sunday</b><span>11:00 AM – 4:00 PM</span></li>
+            <li class="closed"><b>Mon – Tue</b><span>Closed</span></li>
+          </ul>
+          <p style="margin-top:.9rem; font-size:.86rem; opacity:.6; font-style:italic">Or until sold out — we cook what we cook.</p>
+        </div>
+        <div class="info__blk">
+          <h4>Delivery</h4>
+          <div class="deliv">
+            <a href="https://www.doordash.com/store/25891497" target="_blank" rel="noopener">DoorDash</a>
+            <a href="https://www.grubhub.com/restaurant/garretts-barbecue-6062-holly-road-b3-corpus-christi/7130432" target="_blank" rel="noopener">GrubHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="map reveal">
+        <iframe title="Map to Garrett's Barbecue, 6062 Holly Rd, Corpus Christi TX" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Garrett%27s%20Barbecue,%206062%20Holly%20Rd,%20Corpus%20Christi,%20TX%2078412&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HIRING ================= -->
+<section class="hire grain">
+  <div class="wrap hire__in">
+    <div class="reveal">
+      <h2>We're Hiring.</h2>
+      <p>We offer competitive pay and full benefits. If you want to be part of a growing pit crew, come talk to us.</p>
+    </div>
+    <div class="reveal"><a class="btn" href="tel:+13615005675">Apply — Call Us</a></div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="assets/logo-white.png" alt="Garrett's Barbecue">
+      <p>Smoked Texas barbecue on the Southside of Corpus Christi. Brisket, ribs, chicken &amp; sausage.</p>
+      <div class="social">
+        <a href="https://www.facebook.com/garrettsbarbecue/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/garrettsbarbecue" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h5>Menu</h5>
+      <ul>
+        <li><a href="#menu">Plates &amp; Sandwiches</a></li>
+        <li><a href="#packages">Family Packages</a></li>
+        <li><a href="#gallery">Photo Gallery</a></li>
+        <li><a href="#story">Our Story</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Visit</h5>
+      <ul>
+        <li><a href="https://www.google.com/maps?q=Garrett%27s+Barbecue,+6062+Holly+Rd,+Corpus+Christi,+TX+78412" target="_blank" rel="noopener">6062 Holly Rd #B4</a></li>
+        <li><a href="tel:+13615005675">(361) 500-5675</a></li>
+        <li><a href="https://www.doordash.com/store/25891497" target="_blank" rel="noopener">Order on DoorDash</a></li>
+        <li><a href="https://www.grubhub.com/restaurant/garretts-barbecue-6062-holly-road-b3-corpus-christi/7130432" target="_blank" rel="noopener">Order on GrubHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot__base">
+    <span>© <span id="yr">2026</span> Garrett's Barbecue · Corpus Christi, TX</span>
+    <span>Wed–Sat 11–7 · Sun 11–4</span>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a href="tel:+13615005675">Call Now</a>
+  <a href="sms:+13615005675">Text Us</a>
+</div>
+
+<div class="lb" id="lb">
+  <button class="lb__x" aria-label="Close">✕</button>
+  <button class="lb__nav prev" aria-label="Previous">‹</button>
+  <button class="lb__nav next" aria-label="Next">›</button>
+  <img src="" alt="">
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* scroll reveal */
+const io = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12, rootMargin:'0px 0px -60px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay = (i%4)*70 + 'ms';
+  io.observe(el);
+});
+
+/* lightbox */
+(function(){
+  const lb = document.getElementById('lb');
+  const img = lb.querySelector('img');
+  const shots = [...document.querySelectorAll('#galGrid img')];
+  let i = 0;
+  const show = n => { i = (n + shots.length) % shots.length; img.src = shots[i].src; img.alt = shots[i].alt; };
+  shots.forEach((s,n)=> s.parentElement.addEventListener('click', ()=>{ show(n); lb.classList.add('on'); document.body.style.overflow='hidden'; }));
+  const close = ()=>{ lb.classList.remove('on'); document.body.style.overflow=''; };
+  lb.querySelector('.lb__x').onclick = close;
+  lb.querySelector('.prev').onclick = e => { e.stopPropagation(); show(i-1); };
+  lb.querySelector('.next').onclick = e => { e.stopPropagation(); show(i+1); };
+  lb.addEventListener('click', e => { if(e.target === lb) close(); });
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('on')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') show(i-1);
+    if(e.key==='ArrowRight') show(i+1);
+  });
+})();
+
+/* live open/closed dot */
+(function(){
+  const dot = document.querySelector('.dot');
+  if(!dot) return;
+  const now = new Date(), d = now.getDay(), h = now.getHours() + now.getMinutes()/60;
+  const open = (d>=3 && d<=6 && h>=11 && h<19) || (d===0 && h>=11 && h<16);
+  if(!open){ dot.style.background='#F5B62A'; dot.style.boxShadow='0 0 0 4px rgba(245,182,42,.2)'; }
+})();
+</script>
+</body>
+</html>
